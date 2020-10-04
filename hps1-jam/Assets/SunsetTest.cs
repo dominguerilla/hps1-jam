@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SunsetTest : MonoBehaviour
 {
@@ -8,11 +9,15 @@ public class SunsetTest : MonoBehaviour
     public float setRate = -1f;
     public bool autoMode = false;
 
+    [SerializeField]
+    Text modeText;
+
     Quaternion originalRotation;
     // Start is called before the first frame update
     void Start()
     {
         originalRotation = this.transform.rotation;
+        SetModeText();
     }
 
     // Update is called once per frame
@@ -31,6 +36,7 @@ public class SunsetTest : MonoBehaviour
         {
             ResetSun();
             autoMode = !autoMode;
+            SetModeText();
         }
     }
 
@@ -48,5 +54,10 @@ public class SunsetTest : MonoBehaviour
     void ResetSun()
     {
         this.transform.rotation = originalRotation;
+    }
+
+    void SetModeText()
+    {
+        modeText.text = autoMode ? "AUTO MODE" : "MANUAL MODE";
     }
 }
