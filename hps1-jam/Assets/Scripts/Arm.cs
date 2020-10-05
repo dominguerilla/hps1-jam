@@ -8,6 +8,14 @@ public class Arm : MonoBehaviour
 
     ItemComponent heldItem;
 
+    private void Awake()
+    {
+        if (!heldItemPosition)
+        {
+            heldItemPosition = transform;
+        }
+    }
+
     public Transform GetItemPosition()
     {
         return heldItemPosition;
