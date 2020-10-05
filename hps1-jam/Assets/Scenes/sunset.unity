@@ -7456,6 +7456,7 @@ GameObject:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
   - component: {fileID: 705507996}
+  - component: {fileID: 705507997}
   m_Layer: 0
   m_Name: Sun
   m_TagString: Untagged
@@ -7554,6 +7555,22 @@ MonoBehaviour:
   setRate: -2.5
   autoMode: 0
   modeText: {fileID: 1001686954}
+--- !u!114 &705507997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfec9e1219051d341b862b31bfad41b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gardenLength: 1
+  gardenWidth: 1
+  gardenHeight: 1
+  groundBlock: {fileID: 1224467321}
 --- !u!1 &859453673
 GameObject:
   m_ObjectHideFlags: 0
@@ -9331,7 +9348,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18524
+  m_Name: pb_Mesh15454
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
