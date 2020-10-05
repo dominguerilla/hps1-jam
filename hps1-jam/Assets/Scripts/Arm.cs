@@ -24,7 +24,7 @@ public class Arm : MonoBehaviour
     public void Hold(ItemComponent item)
     {
         heldItem = item;
-        item.Freeze();
+        item.Equip();
         item.transform.SetParent(heldItemPosition);
         item.transform.localPosition = Vector3.zero;
     }
@@ -34,7 +34,7 @@ public class Arm : MonoBehaviour
         if (heldItem)
         {
             heldItem.transform.SetParent(null);
-            heldItem.Unfreeze();
+            heldItem.Dequip();
             heldItem = null;
         }
     }

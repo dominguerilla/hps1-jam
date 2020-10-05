@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public class ItemComponent : MonoBehaviour
 {
+    public UnityEvent onEquip = new UnityEvent();
+    public UnityEvent onDequip = new UnityEvent();
+
     /// <summary>
     /// Does the player have to hold down Mouse button to keep a grip on this item?
     /// </summary>
@@ -16,19 +20,25 @@ public class ItemComponent : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();    
     }
-    public void Freeze()
+
+    public void Equip()
     {
-        if (rb)
-        {
-            rb.isKinematic = true;
-        }
+        Freeze();
+        onEquip.Invoke();
     }
 
-    public void Unfreeze()
+    public void Dequip()
     {
-        if (rb)
-        {
-            rb.isKinematic = false;
-        }
+        Unfreeze();
+        onDequip.Invoke();
+    }
+    void Freeze()
+    {
+        rb.isKinematic = true;
+    }
+
+    void Unfreeze()
+    {
+        rb.isKinematic = false;
     }
 }
