@@ -6,7 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(ParticleSystem))]
 public class SaltItem : MonoBehaviour
 {
+    public float saltRadius = 1f;
     [SerializeField] Vector3 targetLocalOrientation;
+    [SerializeField] Transform saltAreaCenter;
     ItemComponent itemComponent;
     bool isEquipped;
     ParticleSystem saltParticles;
@@ -53,7 +55,26 @@ public class SaltItem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            saltParticles.Play();
+            SpraySalt();
         }
+    }
+
+    void SpraySalt()
+    {
+        saltParticles.Play();
+        Collider[] colliders = Physics.OverlapSphere(saltAreaCenter.position, saltRadius);
+        foreach (Collider col in colliders)
+        {
+            Monster monster = col.GetComponentInParent<Monster>();
+            if (monster)
+            {
+                monster.Stun();
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(saltAreaCenter.position, saltRadius);
     }
 }

@@ -8,9 +8,11 @@ public class Monster : MonoBehaviour
 {
     public GameObject[] huntingGrounds;
     public float huntingGroundRadius = 5f;
+    public float stunTime = 2.5f;
 
     NavMeshAgent agent;
-    
+    bool isStunned = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,5 +43,20 @@ public class Monster : MonoBehaviour
     GameObject GetRandomHuntingGround()
     {
         return huntingGrounds[Random.Range(0, huntingGrounds.Length)];
+    }
+
+    public void Stun()
+    {
+        if(!isStunned) StartCoroutine(StunRoutine());
+    }
+
+    IEnumerator StunRoutine()
+    {
+        isStunned = true;
+        bool originalState = agent.isStopped;
+        agent.isStopped = true;
+        yield return new WaitForSeconds(stunTime);
+        agent.isStopped = originalState;
+        isStunned = false;
     }
 }
