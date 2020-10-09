@@ -54,6 +54,7 @@ public class ItemComponent : MonoBehaviour
     public void Dequip()
     {
         Unfreeze();
+        this.transform.SetParent(null);
         isEquipped = false;
         onDequip.Invoke();
     }

@@ -43,7 +43,6 @@ public class Arm : MonoBehaviour
     {
         if (heldItem)
         {
-            heldItem.transform.SetParent(null);
             heldItem.Dequip();
             heldItem = null;
         }
