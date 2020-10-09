@@ -10,6 +10,7 @@ public class ItemComponent : MonoBehaviour
     public UnityEvent onDequip = new UnityEvent();
 
     [SerializeField] Vector3 targetLocalOrientation;
+    [SerializeField] Vector3 targetLocalOffset;
 
     /// <summary>
     /// Does the player have to hold down Mouse button to keep a grip on this item?
@@ -41,10 +42,11 @@ public class ItemComponent : MonoBehaviour
     /// Uses the Item.
     /// </summary>
     public virtual void Use() { }
-    public void Equip()
+    public void Equip(Transform parentObject, Vector3 offset, Vector3 eulerOffset)
     {
         Freeze();
-        Orient();
+        this.transform.SetParent(parentObject);
+        Orient(offset, eulerOffset);
         isEquipped = true;
         onEquip.Invoke();
     }
@@ -64,8 +66,12 @@ public class ItemComponent : MonoBehaviour
     {
         rb.isKinematic = false;
     }
-    void Orient()
+    void Orient(Vector3 offset, Vector3 eulerOffset)
     {
-        this.transform.localEulerAngles = targetLocalOrientation;
+        this.transform.localPosition = Vector3.zero;
+        this.transform.localEulerAngles = Vector3.zero;
+
+        this.transform.localPosition = targetLocalOffset + offset;
+        this.transform.localEulerAngles = targetLocalOrientation + eulerOffset;
     }
 }

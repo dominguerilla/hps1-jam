@@ -24,9 +24,7 @@ public class Arm : MonoBehaviour
     public void Hold(ItemComponent item)
     {
         heldItem = item;
-        item.transform.SetParent(heldItemPosition);
-        item.transform.localPosition = Vector3.zero;
-        item.Equip();
+        item.Equip(heldItemPosition, Vector3.zero, Vector3.zero);
     }
 
     public void UseItem()
