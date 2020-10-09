@@ -14,12 +14,9 @@ public class SaltItem : ItemComponent
         saltParticles = GetComponent<ParticleSystem>();
     }
 
-    public override void whileEquipped()
+    public override void Use()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            SpraySalt();
-        }
+        SpraySalt();
     }
 
     void SpraySalt()

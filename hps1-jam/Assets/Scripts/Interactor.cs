@@ -50,7 +50,7 @@ public class Interactor : MonoBehaviour
             }
             else
             {
-                bool gotItem = PickUp(arms[0]);
+                bool gotItem = UseArm(arms[0]);
             }
         }
         else if (Input.GetMouseButtonUp(0))
@@ -68,7 +68,7 @@ public class Interactor : MonoBehaviour
             }
             else
             {
-                bool gotItem = PickUp(arms[1]);
+                bool gotItem = UseArm(arms[1]);
             }
         }
         else if (Input.GetMouseButtonUp(1))
@@ -78,10 +78,11 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    bool PickUp(Arm arm)
+    bool UseArm(Arm arm)
     {
         if (arm.IsHoldingItem())
         {
+            arm.UseItem();
             return false;
         }
 

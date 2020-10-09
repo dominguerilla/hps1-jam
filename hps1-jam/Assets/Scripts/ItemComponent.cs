@@ -37,6 +37,10 @@ public class ItemComponent : MonoBehaviour
     /// </summary>
     public virtual void whileEquipped() { }
 
+    /// <summary>
+    /// Uses the Item.
+    /// </summary>
+    public virtual void Use() { }
     public void Equip()
     {
         Freeze();

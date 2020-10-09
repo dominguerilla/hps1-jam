@@ -29,6 +29,18 @@ public class Arm : MonoBehaviour
         item.Equip();
     }
 
+    public void UseItem()
+    {
+        if (heldItem)
+        {
+            heldItem.Use();
+        }
+        else
+        {
+            Debug.LogError("Trying to use Item while Arm is empty!");
+        }
+    }
+
     public void Drop()
     {
         if (heldItem)
