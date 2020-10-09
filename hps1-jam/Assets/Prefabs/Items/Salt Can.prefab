@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 9178962469496532190}
   - component: {fileID: 9178962469496532189}
   - component: {fileID: 9178962469496532188}
-  - component: {fileID: 9178962469496532187}
   - component: {fileID: 9178962469496532178}
   - component: {fileID: 9178962469496532180}
   - component: {fileID: 9178962469496532179}
@@ -847,25 +846,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &9178962469496532187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9178962469496532186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 063ef92142b4aca43b3c1c8de268854d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onEquip:
-    m_PersistentCalls:
-      m_Calls: []
-  onDequip:
-    m_PersistentCalls:
-      m_Calls: []
-  isTemporary: 0
 --- !u!114 &9178962469496532178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,6 +858,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3346e506aab1c489e0fccac031c8da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onEquip:
+    m_PersistentCalls:
+      m_Calls: []
+  onDequip:
+    m_PersistentCalls:
+      m_Calls: []
+  isTemporary: 0
   saltRadius: 1
   targetLocalOrientation: {x: 55.52, y: 20.6, z: -12.5}
   saltAreaCenter: {fileID: 5123553320516555704}

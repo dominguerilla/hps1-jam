@@ -2,56 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ItemComponent))]
 [RequireComponent(typeof(ParticleSystem))]
-public class SaltItem : MonoBehaviour
+public class SaltItem : ItemComponent
 {
     public float saltRadius = 1f;
-    [SerializeField] Vector3 targetLocalOrientation;
     [SerializeField] Transform saltAreaCenter;
-    ItemComponent itemComponent;
-    bool isEquipped;
     ParticleSystem saltParticles;
     
     void Start()
     {
-        itemComponent = GetComponent<ItemComponent>();
         saltParticles = GetComponent<ParticleSystem>();
-        Setup();
     }
 
-    void Setup()
-    {
-        itemComponent.onEquip.AddListener(Equip);
-        itemComponent.onDequip.AddListener(Dequip);
-    }
-
-    void Equip()
-    {
-        isEquipped = true;
-        Orient();
-    }
-
-    void Orient()
-    {
-        this.transform.localEulerAngles = targetLocalOrientation;
-    }
-
-    void Dequip()
-    {
-        isEquipped = false;
-    }
-
-    
-    void Update()
-    {
-        if (isEquipped)
-        {
-            onEquipped();
-        }
-    }
-
-    void onEquipped()
+    public override void whileEquipped()
     {
         if (Input.GetMouseButtonDown(0))
         {
