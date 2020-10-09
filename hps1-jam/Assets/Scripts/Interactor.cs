@@ -50,7 +50,7 @@ public class Interactor : MonoBehaviour
             }
             else
             {
-                bool gotItem = UseArm(arms[0]);
+                bool gotItem = UseArm(arms[0], Vector3.zero);
             }
         }
         else if (Input.GetMouseButtonUp(0))
@@ -68,7 +68,8 @@ public class Interactor : MonoBehaviour
             }
             else
             {
-                bool gotItem = UseArm(arms[1]);
+                Vector3 flippedEulerAngles = new Vector3(0f, -90f, 0f);
+                bool gotItem = UseArm(arms[1], flippedEulerAngles);
             }
         }
         else if (Input.GetMouseButtonUp(1))
@@ -78,7 +79,7 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    bool UseArm(Arm arm)
+    bool UseArm(Arm arm, Vector3 eulerAngleOffset)
     {
         if (arm.IsHoldingItem())
         {
@@ -96,7 +97,7 @@ public class Interactor : MonoBehaviour
             ItemComponent item = objectHit.GetComponent<ItemComponent>();
             if (item)
             {
-                arm.Hold(item);
+                arm.Hold(item, eulerAngleOffset);
                 return true;
             }
         }
