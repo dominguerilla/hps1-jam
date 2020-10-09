@@ -42,7 +42,7 @@ public class ItemComponent : MonoBehaviour
     /// Uses the Item.
     /// </summary>
     public virtual void Use() { }
-    public void Equip(Transform parentObject, Vector3 offset, Vector3 eulerOffset)
+    public virtual void Equip(Transform parentObject, Vector3 offset, Vector3 eulerOffset)
     {
         Freeze();
         this.transform.SetParent(parentObject);
