@@ -9,16 +9,16 @@ public class ItemComponent : MonoBehaviour
     public UnityEvent onEquip = new UnityEvent();
     public UnityEvent onDequip = new UnityEvent();
 
-    [SerializeField] Vector3 targetLocalOrientation;
-    [SerializeField] Vector3 targetLocalOffset;
+    [SerializeField] protected Vector3 targetLocalOrientation;
+    [SerializeField] protected Vector3 targetLocalOffset;
 
     /// <summary>
     /// Does the player have to hold down Mouse button to keep a grip on this item?
     /// </summary>
     public bool isTemporary;
 
-    Rigidbody rb;
-    bool isEquipped;
+    protected Rigidbody rb;
+    protected bool isEquipped;
 
     private void Awake()
     {
@@ -51,7 +51,7 @@ public class ItemComponent : MonoBehaviour
         onEquip.Invoke();
     }
 
-    public void Dequip()
+    public virtual void Dequip()
     {
         Unfreeze();
         this.transform.SetParent(null);
