@@ -8,10 +8,16 @@ public class GarlicItem : ItemComponent
     public float throwForce = 25f;
     public float aimForDistance = 1f;
 
+
+    public override void Use()
+    {
+        this.equippedArm.Drop();
+        Throw();
+    }
+
     public override void Dequip()
     {
         base.Dequip();
-        Throw();
     }
 
     void Throw()

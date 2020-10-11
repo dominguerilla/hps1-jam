@@ -11,6 +11,7 @@ public class ItemComponent : MonoBehaviour
 
     [SerializeField] protected Vector3 targetLocalOrientation;
     [SerializeField] protected Vector3 targetLocalOffset;
+    [SerializeField] protected Arm equippedArm;
 
     /// <summary>
     /// Does the player have to hold down Mouse button to keep a grip on this item?
@@ -42,9 +43,10 @@ public class ItemComponent : MonoBehaviour
     /// Uses the Item.
     /// </summary>
     public virtual void Use() { }
-    public virtual void Equip(Transform parentObject, Vector3 offset, Vector3 eulerOffset)
+    public virtual void Equip(Arm arm, Transform parentObject, Vector3 offset, Vector3 eulerOffset)
     {
         Freeze();
+        this.equippedArm = arm;
         this.transform.SetParent(parentObject);
         Orient(offset, eulerOffset);
         isEquipped = true;
@@ -55,6 +57,7 @@ public class ItemComponent : MonoBehaviour
     {
         Unfreeze();
         this.transform.SetParent(null);
+        this.equippedArm = null;
         isEquipped = false;
         onDequip.Invoke();
     }

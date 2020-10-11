@@ -24,7 +24,7 @@ public class Arm : MonoBehaviour
     public void Hold(ItemComponent item, Vector3 eulerAngleOffset)
     {
         heldItem = item;
-        item.Equip(heldItemPosition, Vector3.zero, eulerAngleOffset);
+        item.Equip(this, heldItemPosition, Vector3.zero, eulerAngleOffset);
     }
 
     public void UseItem()
