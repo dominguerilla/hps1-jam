@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class LanternItem : ItemComponent
 {
+
+    public override void Dequip()
+    {
+        base.Dequip();
+        this.transform.eulerAngles = Vector3.zero;
+    }
     // Start is called before the first frame update
     void Start()
     {
