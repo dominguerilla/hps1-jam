@@ -38,6 +38,7 @@ public class Gardener : MonoBehaviour
 
     void CheckPlayer()
     {
+
         if (player.transform.position.y < -500)
         {
             RegenerateGarden();

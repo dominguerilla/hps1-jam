@@ -864,9 +864,11 @@ MonoBehaviour:
   onDequip:
     m_PersistentCalls:
       m_Calls: []
+  targetLocalOrientation: {x: 55.52, y: 20.6, z: -12.5}
+  targetLocalOffset: {x: 0, y: 0, z: 0}
+  equippedArm: {fileID: 0}
   isTemporary: 0
   saltRadius: 1
-  targetLocalOrientation: {x: 55.52, y: 20.6, z: -12.5}
   saltAreaCenter: {fileID: 5123553320516555704}
 --- !u!198 &9178962469496532180
 ParticleSystem:
