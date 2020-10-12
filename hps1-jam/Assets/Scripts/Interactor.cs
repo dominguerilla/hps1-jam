@@ -11,14 +11,15 @@ public class Interactor : MonoBehaviour
     public float maxDropDistance = 2f;
 
     [SerializeField] Arm[] arms;
+    [SerializeField] Camera cam;
     Vector3[] originalArmPositions;
-    Camera cam;
     InventoryComponent inventory;
+
+    Vector3 surfaceUnderCursor;
 
     private void Awake()
     {
         inventory = GetComponent<InventoryComponent>();
-        cam = Camera.main;
         originalArmPositions = new Vector3[arms.Length];
         for (int i = 0; i < arms.Length; i++)
         {
@@ -37,6 +38,11 @@ public class Interactor : MonoBehaviour
         GetMouseInput();
     }
 
+    private void FixedUpdate()
+    {
+        surfaceUnderCursor = GetSurfaceUnderCursor();
+    }
+
     void GetMouseInput()
     {
         Vector3 direction = cam.transform.forward;
@@ -46,7 +52,7 @@ public class Interactor : MonoBehaviour
             arms[0].transform.position += direction;
             if (Input.GetKey(KeyCode.E))
             {
-                arms[0].Drop();
+                arms[0].Drop(surfaceUnderCursor);
             }
             else
             {
@@ -55,7 +61,7 @@ public class Interactor : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            arms[0].DropIfTemporary();
+            arms[0].DropIfTemporary(surfaceUnderCursor);
             arms[0].transform.localPosition = originalArmPositions[0];
         }
 
@@ -64,7 +70,7 @@ public class Interactor : MonoBehaviour
             arms[1].transform.position += direction;
             if (Input.GetKey(KeyCode.E))
             {
-                arms[1].Drop();
+                arms[1].Drop(surfaceUnderCursor);
             }
             else
             {
@@ -74,7 +80,7 @@ public class Interactor : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(1))
         {
-            arms[1].DropIfTemporary();
+            arms[1].DropIfTemporary(surfaceUnderCursor);
             arms[1].transform.localPosition = originalArmPositions[1];
         }
     }
@@ -105,17 +111,27 @@ public class Interactor : MonoBehaviour
         return false;
     }
 
-    void Drop()
+    private void OnDrawGizmosSelected()
+    {
+        if(Application.isPlaying)  Debug.DrawLine(cam.transform.position, surfaceUnderCursor, Color.red);
+    }
+
+    Vector3 GetSurfaceUnderCursor()
     {
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        //TODO: Can only drop if mouse is on something
-        //TODO: One can drop an item through a wall/object
-        if (Physics.Raycast(ray, out hit))
+        Ray cameraForward = GetCameraForward();
+        if (Physics.Raycast(cameraForward, out hit, maxDropDistance))
         {
-            Vector3 position = (hit.point - transform.position).normalized;
-            this.inventory.Drop(transform.position + position);
+            return hit.point;
         }
+        return GetCameraForwardVector();
+    }
+
+    Ray GetCameraForward() {
+        return cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, maxDropDistance));
+    }
+
+    Vector3 GetCameraForwardVector() {
+        return cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, maxDropDistance));
     }
 }

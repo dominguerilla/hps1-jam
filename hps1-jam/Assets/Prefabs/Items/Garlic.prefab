@@ -701,5 +701,5 @@ MonoBehaviour:
   targetLocalOffset: {x: 0, y: 0, z: 0}
   equippedArm: {fileID: 0}
   isTemporary: 0
-  throwForce: 750
+  throwForce: 1000
   aimForDistance: 1

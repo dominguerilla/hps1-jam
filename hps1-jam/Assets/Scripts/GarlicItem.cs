@@ -11,20 +11,20 @@ public class GarlicItem : ItemComponent
 
     public override void Use()
     {
-        this.equippedArm.Drop();
+        this.equippedArm.Drop(this.transform.position + GetCameraForward());
         Throw();
-    }
-
-    public override void Dequip()
-    {
-        base.Dequip();
     }
 
     void Throw()
     {
-        Vector3 camForward = (Camera.main.transform.parent.forward + Camera.main.transform.forward).normalized * aimForDistance;
+        Vector3 camForward = GetCameraForward() * aimForDistance;
         Vector3 throwVector = camForward * throwForce;
 
         this.rb.AddForce(throwVector);
+    }
+
+    Vector3 GetCameraForward()
+    {
+        return (Camera.main.transform.parent.forward + Camera.main.transform.forward).normalized;
     }
 }

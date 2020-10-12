@@ -39,20 +39,21 @@ public class Arm : MonoBehaviour
         }
     }
 
-    public void Drop()
+    public void Drop(Vector3 location)
     {
         if (heldItem)
         {
+            heldItem.transform.position = location;
             heldItem.Dequip();
             heldItem = null;
         }
     }
 
-    public void DropIfTemporary()
+    public void DropIfTemporary(Vector3 location)
     {
         if (heldItem && heldItem.isTemporary)
         {
-            Drop();
+            Drop(location);
         }
     }
 
