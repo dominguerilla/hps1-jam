@@ -50,6 +50,11 @@ public class Monster : MonoBehaviour
         if(!isStunned) StartCoroutine(StunRoutine());
     }
 
+    public void Flee()
+    {
+        Debug.Log($"{this.gameObject.name} is fleeing!");
+    }
+
     IEnumerator StunRoutine()
     {
         isStunned = true;
