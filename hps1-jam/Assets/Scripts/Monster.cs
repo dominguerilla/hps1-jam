@@ -13,6 +13,9 @@ public class Monster : MonoBehaviour
     NavMeshAgent agent;
     bool isStunned = false;
 
+    // TODO: remove this
+    [SerializeField] Light monsterDebugLight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +56,16 @@ public class Monster : MonoBehaviour
     public void Flee()
     {
         Debug.Log($"{this.gameObject.name} is fleeing!");
+    }
+
+    public void ChasePlayer()
+    {
+        monsterDebugLight.color = Color.red;
+    }
+
+    public void LostPlayer()
+    {
+        monsterDebugLight.color = Color.yellow;
     }
 
     IEnumerator StunRoutine()
