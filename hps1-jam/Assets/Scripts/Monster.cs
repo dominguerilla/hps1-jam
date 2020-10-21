@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Bolt;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Monster : MonoBehaviour
@@ -10,6 +11,10 @@ public class Monster : MonoBehaviour
     public GameObject[] huntingGrounds;
     public float huntingGroundRadius = 5f;
     public float stunTime = 2.5f;
+
+    [Header("Events")]
+    public UnityEvent OnDetectPlayer = new UnityEvent();
+    public UnityEvent OnLosePlayer = new UnityEvent();
 
     NavMeshAgent agent;
     bool isStunned = false;
@@ -19,7 +24,7 @@ public class Monster : MonoBehaviour
     [SerializeField] Light monsterDebugLight;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
     }
@@ -27,6 +32,12 @@ public class Monster : MonoBehaviour
     public void GoToRandomHuntingGround()
     {
         Vector3 huntingGroundPosition = GetRandomHuntingGroundPosition();
+
+        // Bolt can call this function before Awake has even run
+        if (!agent)
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
         agent.SetDestination(huntingGroundPosition);
     }
 
@@ -65,19 +76,22 @@ public class Monster : MonoBehaviour
         Debug.Log($"{this.gameObject.name} is fleeing!");
     }
 
-    public void OnDetectingPlayer()
+    public void TriggerOnDetectPlayer()
     {
-        StartCoroutine(AlternateLightColors());
         //GameObject target = vision.GetTarget();
-        
-        //CustomEvent.Trigger(this.gameObject, "OnSeeingPlayer");
+
+        OnDetectPlayer.Invoke();
     }
 
-    public void OnLosingPlayer()
+    public void TriggerOnLosePlayer()
     {
-        StopAlternatingLights();
+        OnLosePlayer.Invoke();
         monsterDebugLight.color = Color.yellow;
-        //CustomEvent.Trigger(this.gameObject, "OnLosingPlayer");
+    }
+
+    public void StartAlternateLightColors()
+    {
+        StartCoroutine(AlternateLightColors());
     }
 
     IEnumerator AlternateLightColors()
@@ -96,7 +110,7 @@ public class Monster : MonoBehaviour
         yield return null;
     }
 
-    void StopAlternatingLights()
+    public void StopAlternatingLights()
     {
         isAlternatingLight = false;
     }
