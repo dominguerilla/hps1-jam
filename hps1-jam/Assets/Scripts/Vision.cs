@@ -11,11 +11,13 @@ public class Vision : MonoBehaviour
     [SerializeField] Transform eyePosition;
 
     bool sawPlayer = false;
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"{other.gameObject.name} entered collider.");
         if (other.gameObject.tag == "Player")
         {
-            if (CanSee(other.gameObject))
+            RaycastHit hit;
+            if (CanSee(other.gameObject, out hit))
             {
                 sawPlayer = true;
                 OnDetectPlayer.Invoke();
@@ -25,6 +27,7 @@ public class Vision : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log($"{other.gameObject.name} exited collider.");
         if (other.gameObject.tag == "Player")
         {
             if (sawPlayer)
@@ -35,8 +38,8 @@ public class Vision : MonoBehaviour
         }
     }
 
-    bool CanSee(GameObject other)
+    bool CanSee(GameObject other, out RaycastHit hit)
     {
-        return Physics.Raycast(eyePosition.position, other.transform.position);
+        return Physics.Raycast(eyePosition.position, other.transform.position, out hit);
     }
 }

@@ -11679,14 +11679,14 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.16096401, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.9719956, g: 1, b: 0, a: 1}
   m_Intensity: 25
   m_Range: 40
   m_SpotAngle: 156.3
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -11791,7 +11791,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 299520304534051928}
         m_TargetAssemblyTypeName: Monster, Assembly-CSharp
-        m_MethodName: ChasePlayer
+        m_MethodName: OnDetectingPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11806,7 +11806,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 299520304534051928}
         m_TargetAssemblyTypeName: Monster, Assembly-CSharp
-        m_MethodName: LostPlayer
+        m_MethodName: OnLosingPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

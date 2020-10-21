@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Bolt;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Monster : MonoBehaviour
@@ -12,6 +13,7 @@ public class Monster : MonoBehaviour
 
     NavMeshAgent agent;
     bool isStunned = false;
+    bool isAlternatingLight = false;
 
     // TODO: remove this
     [SerializeField] Light monsterDebugLight;
@@ -26,6 +28,11 @@ public class Monster : MonoBehaviour
     {
         Vector3 huntingGroundPosition = GetRandomHuntingGroundPosition();
         agent.SetDestination(huntingGroundPosition);
+    }
+
+    public void GoTo(Vector3 position)
+    {
+        agent.SetDestination(position);
     }
 
     public bool isAtDestination()
@@ -58,14 +65,40 @@ public class Monster : MonoBehaviour
         Debug.Log($"{this.gameObject.name} is fleeing!");
     }
 
-    public void ChasePlayer()
+    public void OnDetectingPlayer()
     {
-        monsterDebugLight.color = Color.red;
+        StartCoroutine(AlternateLightColors());
+        //GameObject target = vision.GetTarget();
+        
+        //CustomEvent.Trigger(this.gameObject, "OnSeeingPlayer");
     }
 
-    public void LostPlayer()
+    public void OnLosingPlayer()
     {
+        StopAlternatingLights();
         monsterDebugLight.color = Color.yellow;
+        //CustomEvent.Trigger(this.gameObject, "OnLosingPlayer");
+    }
+
+    IEnumerator AlternateLightColors()
+    {
+        if (!isAlternatingLight)
+        {
+            isAlternatingLight = true;
+            Color lightColor = Color.red;
+            while (isAlternatingLight)
+            {
+                monsterDebugLight.color = lightColor;
+                yield return new WaitForSeconds(0.5f);
+                lightColor = lightColor == Color.red ? Color.blue : Color.red;
+            }
+        }
+        yield return null;
+    }
+
+    void StopAlternatingLights()
+    {
+        isAlternatingLight = false;
     }
 
     IEnumerator StunRoutine()
