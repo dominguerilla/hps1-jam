@@ -621,7 +621,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1430
+  m_Name: pb_Mesh-1394
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1424,6 +1424,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &740502950 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1967291124, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
+  m_PrefabInstance: {fileID: 299520304561006668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c9b09c975e8f24d88fbe456eeb8bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &750854189
 Mesh:
   m_ObjectHideFlags: 0
@@ -2044,7 +2055,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1438
+  m_Name: pb_Mesh-1402
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2208,7 +2219,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1296
+  m_Name: pb_Mesh-1262
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5357,6 +5368,23 @@ PrefabInstance:
       objectReference: {fileID: 179754310}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88ccbe660e3026446bbc6345c2eac8cd, type: 3}
+--- !u!1 &1759973702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6604931323177917028, guid: 4b1dd5e2f06a5b54283d18e03193abbb, type: 3}
+  m_PrefabInstance: {fileID: 1509070051}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1759973711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759973702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cbe7353451f06f4f933c46748b894d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1963313896
 GameObject:
   m_ObjectHideFlags: 0
@@ -17194,7 +17222,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1292
+  m_Name: pb_Mesh-1258
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17436,6 +17464,10 @@ PrefabInstance:
       propertyPath: huntingGrounds.Array.data[2]
       value: 
       objectReference: {fileID: 754820575}
+    - target: {fileID: 299520304534051928, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
+      propertyPath: vision
+      value: 
+      objectReference: {fileID: 740502950}
     - target: {fileID: 299520304534051930, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.331

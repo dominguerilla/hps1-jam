@@ -8,9 +8,11 @@ using UnityEngine.Events;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Monster : MonoBehaviour
 {
+    [Header("Monster Parameters")]
     public GameObject[] huntingGrounds;
     public float huntingGroundRadius = 5f;
     public float stunTime = 2.5f;
+    [SerializeField] Vision vision;
 
     [Header("Events")]
     public UnityEvent OnDetectPlayer = new UnityEvent();
@@ -19,7 +21,10 @@ public class Monster : MonoBehaviour
     NavMeshAgent agent;
     bool isStunned = false;
     bool isAlternatingLight = false;
+    GameObject currentTargetPlayer = null;
+    Vector3 lastSeenPlayerPosition = Vector3.zero;
 
+    [Header("Debug")]
     // TODO: remove this
     [SerializeField] Light monsterDebugLight;
 
@@ -78,13 +83,14 @@ public class Monster : MonoBehaviour
 
     public void TriggerOnDetectPlayer()
     {
-        //GameObject target = vision.GetTarget();
-
+        currentTargetPlayer = vision.GetSeenTarget();
         OnDetectPlayer.Invoke();
     }
 
     public void TriggerOnLosePlayer()
     {
+        lastSeenPlayerPosition = currentTargetPlayer.transform.position;
+        currentTargetPlayer = null;
         OnLosePlayer.Invoke();
         monsterDebugLight.color = Color.yellow;
     }
@@ -92,6 +98,39 @@ public class Monster : MonoBehaviour
     public void StartAlternateLightColors()
     {
         StartCoroutine(AlternateLightColors());
+    }
+
+    public Vector3 GetLastSeenPlayerPosition()
+    {
+        if (currentTargetPlayer)
+        {
+            return currentTargetPlayer.transform.position;
+        }
+        return lastSeenPlayerPosition;
+    }
+
+    public void StopAlternatingLights()
+    {
+        isAlternatingLight = false;
+    }
+
+    public GameObject GetCurrentTargetPlayer()
+    {
+        return currentTargetPlayer;
+    }
+
+    public bool IsWithinAttackRange(GameObject target)
+    {
+        if (target == null) throw new System.Exception("No target set!");
+        RaycastHit hit;
+        if (Physics.Raycast(this.transform.position, target.transform.position, out hit, 0.5f))
+        {
+            if (hit.transform.tag == "Player")
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     IEnumerator AlternateLightColors()
@@ -110,10 +149,7 @@ public class Monster : MonoBehaviour
         yield return null;
     }
 
-    public void StopAlternatingLights()
-    {
-        isAlternatingLight = false;
-    }
+
 
     IEnumerator StunRoutine()
     {

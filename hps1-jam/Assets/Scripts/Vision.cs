@@ -9,16 +9,18 @@ public class Vision : MonoBehaviour
     public UnityEvent OnLosePlayer = new UnityEvent();
 
     [SerializeField] Transform eyePosition;
+    GameObject seenTarget;
 
     bool sawPlayer = false;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"{other.gameObject.name} entered collider.");
+        //Debug.Log($"{other.gameObject.name} entered field of vision.");
         if (other.gameObject.tag == "Player")
         {
             RaycastHit hit;
             if (CanSee(other.gameObject, out hit))
             {
+                seenTarget = other.gameObject;
                 sawPlayer = true;
                 OnDetectPlayer.Invoke();
             }
@@ -27,12 +29,13 @@ public class Vision : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log($"{other.gameObject.name} exited collider.");
+        //Debug.Log($"{other.gameObject.name} exited field of vision.");
         if (other.gameObject.tag == "Player")
         {
             if (sawPlayer)
             {
                 sawPlayer = false;
+                seenTarget = null;
                 OnLosePlayer.Invoke();
             }
         }
@@ -41,5 +44,10 @@ public class Vision : MonoBehaviour
     bool CanSee(GameObject other, out RaycastHit hit)
     {
         return Physics.Raycast(eyePosition.position, other.transform.position, out hit);
+    }
+
+    public GameObject GetSeenTarget()
+    {
+        return seenTarget;
     }
 }
