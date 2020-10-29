@@ -37,7 +37,7 @@ public class GarlicItem : ItemComponent
         if (isBeingThrown)
         {
             BreakApart();
-            Monster monster = collision.collider.GetComponentInParent<Monster>();
+            MonsterBody monster = collision.collider.GetComponentInParent<MonsterBody>();
             if (monster)
             {
                 monster.Flee();

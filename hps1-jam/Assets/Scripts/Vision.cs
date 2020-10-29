@@ -12,7 +12,8 @@ public class Vision : MonoBehaviour
     GameObject seenTarget;
 
     bool sawPlayer = false;
-    private void OnTriggerEnter(Collider other)
+
+    private void OnTriggerStay(Collider other)
     {
         //Debug.Log($"{other.gameObject.name} entered field of vision.");
         if (other.gameObject.tag == "Player")
