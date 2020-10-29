@@ -12,6 +12,7 @@ public class MonsterBody: MonoBehaviour
     public GameObject[] huntingGrounds;
     public float huntingGroundRadius = 5f;
     public float stunTime = 2.5f;
+    public float detachDistance = 10f;
     [SerializeField] Vision vision;
 
     [Header("Events")]
@@ -21,7 +22,7 @@ public class MonsterBody: MonoBehaviour
     NavMeshAgent agent;
     bool isStunned = false;
     bool isAlternatingLight = false;
-    GameObject currentTargetPlayer = null;
+    GameObject currentTarget = null;
     Vector3 lastSeenPlayerPosition = Vector3.zero;
 
     [Header("Debug")]
@@ -56,6 +57,12 @@ public class MonsterBody: MonoBehaviour
         return agent.remainingDistance < 1f;
     }
 
+    public bool isWithinDetachDistance(GameObject other)
+    {
+        if (other == null) return false;
+        return Vector3.Distance(this.transform.position, other.transform.position) <= detachDistance;
+    }
+
     Vector3 GetRandomHuntingGroundPosition()
     {
         GameObject randomHuntingGround = GetRandomHuntingGround();
@@ -76,6 +83,17 @@ public class MonsterBody: MonoBehaviour
         if(!isStunned) StartCoroutine(StunRoutine());
     }
 
+    public void Stop()
+    {
+        this.agent.ResetPath();
+    }
+
+    public void LookAt(Vector3 position)
+    {
+        if (isStunned) return;
+        this.transform.LookAt(position);
+    }
+
     public void Flee()
     {
         Debug.Log($"{this.gameObject.name} is fleeing!");
@@ -83,14 +101,14 @@ public class MonsterBody: MonoBehaviour
 
     public void TriggerOnDetectPlayer()
     {
-        currentTargetPlayer = vision.GetSeenTarget();
+        currentTarget = vision.GetSeenTarget();
         OnDetectPlayer.Invoke();
     }
 
     public void TriggerOnLosePlayer()
     {
-        lastSeenPlayerPosition = currentTargetPlayer.transform.position;
-        currentTargetPlayer = null;
+        lastSeenPlayerPosition = currentTarget.transform.position;
+        currentTarget = null;
         OnLosePlayer.Invoke();
         monsterDebugLight.color = Color.yellow;
     }
@@ -102,9 +120,9 @@ public class MonsterBody: MonoBehaviour
 
     public Vector3 GetLastSeenPlayerPosition()
     {
-        if (currentTargetPlayer)
+        if (currentTarget)
         {
-            return currentTargetPlayer.transform.position;
+            return currentTarget.transform.position;
         }
         return lastSeenPlayerPosition;
     }
@@ -116,7 +134,7 @@ public class MonsterBody: MonoBehaviour
 
     public GameObject GetCurrentTargetPlayer()
     {
-        return currentTargetPlayer;
+        return currentTarget;
     }
 
     public bool IsWithinAttackRange(GameObject target)

@@ -17633,6 +17633,10 @@ PrefabInstance:
       propertyPath: huntingGrounds.Array.data[2]
       value: 
       objectReference: {fileID: 754820575}
+    - target: {fileID: 299520304534051928, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
+      propertyPath: detachDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 299520304534051930, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.331
