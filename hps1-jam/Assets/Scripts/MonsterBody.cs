@@ -9,6 +9,7 @@ using UnityEngine.Events;
 public class MonsterBody: MonoBehaviour
 {
     [Header("Monster Parameters")]
+    [SerializeField] bool monsterEnabled;
     public GameObject[] huntingGrounds;
     public float huntingGroundRadius = 5f;
     public float stunTime = 2.5f;
@@ -30,13 +31,15 @@ public class MonsterBody: MonoBehaviour
     [SerializeField] Light monsterDebugLight;
 
     // Start is called before the first frame update
-    void Awake()
+    protected void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.enabled = monsterEnabled;
     }
 
     public void GoToRandomHuntingGround()
     {
+        if (huntingGrounds.Length == 0) return;
         Vector3 huntingGroundPosition = GetRandomHuntingGroundPosition();
 
         // Bolt can call this function before Awake has even run
@@ -54,7 +57,8 @@ public class MonsterBody: MonoBehaviour
 
     public bool isAtDestination()
     {
-        return agent.remainingDistance < 1f;
+        if(monsterEnabled) return agent.remainingDistance < 1f;
+        return true;
     }
 
     public bool isWithinDetachDistance(GameObject other)
@@ -63,7 +67,7 @@ public class MonsterBody: MonoBehaviour
         return Vector3.Distance(this.transform.position, other.transform.position) <= detachDistance;
     }
 
-    Vector3 GetRandomHuntingGroundPosition()
+    protected Vector3 GetRandomHuntingGroundPosition()
     {
         GameObject randomHuntingGround = GetRandomHuntingGround();
         float randX = Random.Range(0.5f, huntingGroundRadius);
@@ -73,13 +77,14 @@ public class MonsterBody: MonoBehaviour
         return randomHuntingGround.transform.position + randomOffset;
     }
 
-    GameObject GetRandomHuntingGround()
+    protected GameObject GetRandomHuntingGround()
     {
         return huntingGrounds[Random.Range(0, huntingGrounds.Length)];
     }
 
     public void Stun()
     {
+        if (!monsterEnabled) return;
         if(!isStunned) StartCoroutine(StunRoutine());
     }
 
@@ -90,7 +95,7 @@ public class MonsterBody: MonoBehaviour
 
     public void LookAt(Vector3 position)
     {
-        if (isStunned) return;
+        if (!monsterEnabled || isStunned) return;
         this.transform.LookAt(position);
     }
 
@@ -101,16 +106,30 @@ public class MonsterBody: MonoBehaviour
 
     public void TriggerOnDetectPlayer()
     {
+        if (!monsterEnabled) return;
         currentTarget = vision.GetSeenTarget();
         OnDetectPlayer.Invoke();
     }
 
     public void TriggerOnLosePlayer()
     {
+        if (!monsterEnabled) return;
         lastSeenPlayerPosition = currentTarget.transform.position;
         currentTarget = null;
         OnLosePlayer.Invoke();
         monsterDebugLight.color = Color.yellow;
+    }
+
+    public void EnableMonster()
+    {
+        monsterEnabled = true;
+        agent.enabled = true;
+    }
+
+    public void DisableMonster()
+    {
+        monsterEnabled = false;
+        agent.enabled = false;
     }
 
     public void StartAlternateLightColors()
@@ -151,7 +170,7 @@ public class MonsterBody: MonoBehaviour
         return false;
     }
 
-    IEnumerator AlternateLightColors()
+    protected IEnumerator AlternateLightColors()
     {
         if (!isAlternatingLight)
         {
@@ -169,7 +188,7 @@ public class MonsterBody: MonoBehaviour
 
 
 
-    IEnumerator StunRoutine()
+    protected IEnumerator StunRoutine()
     {
         isStunned = true;
         bool originalState = agent.isStopped;
@@ -177,5 +196,15 @@ public class MonsterBody: MonoBehaviour
         yield return new WaitForSeconds(stunTime);
         agent.isStopped = originalState;
         isStunned = false;
+    }
+
+    public virtual void Attack()
+    {
+        Debug.Log("DETACH!");
+    }
+
+    public bool isEnabled()
+    {
+        return monsterEnabled;
     }
 }
