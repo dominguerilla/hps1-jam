@@ -13,7 +13,7 @@ public class Monster: MonoBehaviour
     public GameObject[] huntingGrounds;
     public float huntingGroundRadius = 5f;
     public float stunTime = 2.5f;
-    public float detachDistance = 10f;
+    public float attackRange = 10f;
     [SerializeField] Vision vision;
 
     [Header("Events")]
@@ -61,10 +61,10 @@ public class Monster: MonoBehaviour
         return true;
     }
 
-    public bool isWithinDetachDistance(GameObject other)
+    public bool isWithinAttackRange(GameObject other)
     {
         if (other == null) return false;
-        return Vector3.Distance(this.transform.position, other.transform.position) <= detachDistance;
+        return Vector3.Distance(this.transform.position, other.transform.position) <= attackRange;
     }
 
     protected Vector3 GetRandomHuntingGroundPosition()
@@ -154,20 +154,6 @@ public class Monster: MonoBehaviour
     public GameObject GetCurrentTargetPlayer()
     {
         return currentTarget;
-    }
-
-    public bool IsWithinAttackRange(GameObject target)
-    {
-        if (target == null) throw new System.Exception("No target set!");
-        RaycastHit hit;
-        if (Physics.Raycast(this.transform.position, target.transform.position, out hit, 0.5f))
-        {
-            if (hit.transform.tag == "Player")
-            {
-                return true;
-            }
-        }
-        return false;
     }
 
     protected IEnumerator AlternateLightColors()
