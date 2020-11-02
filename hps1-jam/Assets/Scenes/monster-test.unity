@@ -3517,11 +3517,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!108 &1242736382 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 1835548387, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
-  m_PrefabInstance: {fileID: 299520304561006668}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1358307002
 GameObject:
   m_ObjectHideFlags: 0
@@ -17618,10 +17613,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2141535530}
-    - target: {fileID: 354536818, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
-      propertyPath: monsterDebugLight
-      value: 
-      objectReference: {fileID: 1242736382}
     - target: {fileID: 1547344527, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
       propertyPath: m_Mesh
       value: 

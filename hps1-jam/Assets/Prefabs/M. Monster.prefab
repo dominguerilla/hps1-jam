@@ -13911,15 +13911,79 @@ MonoBehaviour:
   huntingGrounds: []
   huntingGroundRadius: 5
   stunTime: 2.5
-  detachDistance: 10
-  vision: {fileID: 0}
+  attackRange: 1
+  vision: {fileID: 1967291124}
   OnDetectPlayer:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 354536819}
+        m_TargetAssemblyTypeName: Bolt.EventMachine`2[[Bolt.StateGraph, Bolt.State.Runtime
+        m_MethodName: TriggerUnityEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnDetectPlayer
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 354536818}
+        m_TargetAssemblyTypeName: Monster, Assembly-CSharp
+        m_MethodName: StartAlternateLightColors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnLosePlayer:
     m_PersistentCalls:
-      m_Calls: []
-  monsterDebugLight: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 354536819}
+        m_TargetAssemblyTypeName: Bolt.EventMachine`2[[Bolt.StateGraph, Bolt.State.Runtime
+        m_MethodName: TriggerUnityEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnLosePlayer
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 354536818}
+        m_TargetAssemblyTypeName: Monster, Assembly-CSharp
+        m_MethodName: StopAlternatingLights
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  monsterDebugLight: {fileID: 1835548387}
+  attachedBody: {fileID: 973654694}
+  onDetach:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 354536819}
+        m_TargetAssemblyTypeName: Bolt.EventMachine`2[[Bolt.StateGraph, Bolt.State.Runtime
+        m_MethodName: TriggerUnityEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnEnable
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8341338515555117178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14617,10 +14681,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 354536818}
+        m_TargetAssemblyTypeName: Monster, Assembly-CSharp
+        m_MethodName: TriggerOnDetectPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnLosePlayer:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 973654694}
+        m_TargetAssemblyTypeName: Monster, Assembly-CSharp
+        m_MethodName: TriggerOnLosePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 354536818}
         m_TargetAssemblyTypeName: Monster, Assembly-CSharp
         m_MethodName: TriggerOnLosePlayer
         m_Mode: 1
@@ -14738,7 +14826,7 @@ MonoBehaviour:
   huntingGrounds: []
   huntingGroundRadius: 5
   stunTime: 2.5
-  detachDistance: 10
+  attackRange: 10
   vision: {fileID: 1967291124}
   OnDetectPlayer:
     m_PersistentCalls:
@@ -14795,3 +14883,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   monsterDebugLight: {fileID: 1835548387}
+  head: {fileID: 354536818}
+  onDetach:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 299520304534051931}
+        m_TargetAssemblyTypeName: Bolt.EventMachine`2[[Bolt.StateGraph, Bolt.State.Runtime
+        m_MethodName: TriggerUnityEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnDisable
+          m_BoolArgument: 0
+        m_CallState: 2

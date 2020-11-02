@@ -20,11 +20,11 @@ public class Monster: MonoBehaviour
     public UnityEvent OnDetectPlayer = new UnityEvent();
     public UnityEvent OnLosePlayer = new UnityEvent();
 
-    NavMeshAgent agent;
-    bool isStunned = false;
-    bool isAlternatingLight = false;
-    GameObject currentTarget = null;
-    Vector3 lastSeenPlayerPosition = Vector3.zero;
+    protected NavMeshAgent agent;
+    protected bool isStunned = false;
+    protected bool isAlternatingLight = false;
+    protected GameObject currentTarget = null;
+    protected Vector3 lastSeenPlayerPosition = Vector3.zero;
 
     [Header("Debug")]
     // TODO: remove this
@@ -52,7 +52,7 @@ public class Monster: MonoBehaviour
 
     public void GoTo(Vector3 position)
     {
-        agent.SetDestination(position);
+        if(agent.enabled) agent.SetDestination(position);
     }
 
     public bool isAtDestination()
@@ -90,7 +90,7 @@ public class Monster: MonoBehaviour
 
     public void Stop()
     {
-        this.agent.ResetPath();
+        if(agent.enabled) this.agent.ResetPath();
     }
 
     public void LookAt(Vector3 position)
