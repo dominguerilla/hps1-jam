@@ -44,7 +44,14 @@ public class Vision : MonoBehaviour
 
     bool CanSee(GameObject other, out RaycastHit hit)
     {
-        return Physics.Raycast(eyePosition.position, other.transform.position, out hit);
+        if (Physics.Raycast(eyePosition.position, other.transform.position - eyePosition.position, out hit)) {
+            if (hit.transform.tag == "Player")
+            {
+                return true;
+            }
+        }
+        return false;
+        
     }
 
     public GameObject GetSeenTarget()
