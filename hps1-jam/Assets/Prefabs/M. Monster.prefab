@@ -14574,8 +14574,8 @@ MonoBehaviour:
   OnDetectPlayer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 299520304534051928}
-        m_TargetAssemblyTypeName: MonsterBody, Assembly-CSharp
+      - m_Target: {fileID: 973654694}
+        m_TargetAssemblyTypeName: Monster, Assembly-CSharp
         m_MethodName: TriggerOnDetectPlayer
         m_Mode: 1
         m_Arguments:
@@ -14589,8 +14589,8 @@ MonoBehaviour:
   OnLosePlayer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 299520304534051928}
-        m_TargetAssemblyTypeName: MonsterBody, Assembly-CSharp
+      - m_Target: {fileID: 973654694}
+        m_TargetAssemblyTypeName: Monster, Assembly-CSharp
         m_MethodName: TriggerOnLosePlayer
         m_Mode: 1
         m_Arguments:
@@ -14612,9 +14612,9 @@ GameObject:
   m_Component:
   - component: {fileID: 299520304534051930}
   - component: {fileID: 299520304534051929}
-  - component: {fileID: 299520304534051928}
   - component: {fileID: 299520304534051924}
   - component: {fileID: 299520304534051931}
+  - component: {fileID: 973654694}
   m_Layer: 0
   m_Name: M. Monster
   m_TagString: Untagged
@@ -14660,82 +14660,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &299520304534051928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299520304534051935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d315f7ee1da16204eb8509443214ed4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterEnabled: 1
-  huntingGrounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  huntingGroundRadius: 5
-  stunTime: 2.5
-  detachDistance: 15
-  vision: {fileID: 1967291124}
-  OnDetectPlayer:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 299520304534051931}
-        m_TargetAssemblyTypeName: Bolt.EventMachine`2[[Bolt.StateGraph, Bolt.State.Runtime
-        m_MethodName: TriggerUnityEvent
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: OnDetectPlayer
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 299520304534051928}
-        m_TargetAssemblyTypeName: Monster, Assembly-CSharp
-        m_MethodName: StartAlternateLightColors
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnLosePlayer:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 299520304534051931}
-        m_TargetAssemblyTypeName: Bolt.EventMachine`2[[Bolt.StateGraph, Bolt.State.Runtime
-        m_MethodName: TriggerUnityEvent
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: OnLosePlayer
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 299520304534051928}
-        m_TargetAssemblyTypeName: Monster, Assembly-CSharp
-        m_MethodName: StopAlternatingLights
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  monsterDebugLight: {fileID: 1835548387}
 --- !u!114 &299520304534051924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14767,3 +14691,79 @@ MonoBehaviour:
     _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
     _objectReferences:
     - {fileID: 11400000, guid: 05faadf4c9ace8748a98582f51d594b8, type: 2}
+--- !u!114 &973654694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299520304534051935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24755c2e41ed0c4e89c589ef9d9accc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterEnabled: 1
+  huntingGrounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  huntingGroundRadius: 5
+  stunTime: 2.5
+  detachDistance: 10
+  vision: {fileID: 1967291124}
+  OnDetectPlayer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 299520304534051931}
+        m_TargetAssemblyTypeName: Bolt.EventMachine`2[[Bolt.StateGraph, Bolt.State.Runtime
+        m_MethodName: TriggerUnityEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnDetectPlayer
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 973654694}
+        m_TargetAssemblyTypeName: Monster, Assembly-CSharp
+        m_MethodName: StartAlternateLightColors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnLosePlayer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 299520304534051931}
+        m_TargetAssemblyTypeName: Bolt.EventMachine`2[[Bolt.StateGraph, Bolt.State.Runtime
+        m_MethodName: TriggerUnityEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnLosePlayer
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 973654694}
+        m_TargetAssemblyTypeName: Monster, Assembly-CSharp
+        m_MethodName: StopAlternatingLights
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  monsterDebugLight: {fileID: 1835548387}

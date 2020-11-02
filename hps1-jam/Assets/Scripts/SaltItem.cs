@@ -25,7 +25,7 @@ public class SaltItem : ItemComponent
         Collider[] colliders = Physics.OverlapSphere(saltAreaCenter.position, saltRadius);
         foreach (Collider col in colliders)
         {
-            MonsterBody monster = col.GetComponentInParent<MonsterBody>();
+            Monster monster = col.GetComponentInParent<Monster>();
             if (monster)
             {
                 monster.Stun();

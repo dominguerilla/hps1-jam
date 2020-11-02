@@ -4,15 +4,10 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class MonsterHead : MonsterBody
+public class MonsterHead : Monster
 {
-    /*
-     * TODO: Make MonsterHead and MonsterBody inherit from Monster.
-     * 
-     */
-
     public override void Attack()
     {
-        Debug.Log("ATTACK!");
+        Debug.Log("BITE!");
     }
 }
