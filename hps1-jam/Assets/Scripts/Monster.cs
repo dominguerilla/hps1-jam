@@ -31,7 +31,7 @@ public class Monster: MonoBehaviour
     [SerializeField] Light monsterDebugLight;
 
     // Start is called before the first frame update
-    protected void Awake()
+    protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = monsterEnabled;

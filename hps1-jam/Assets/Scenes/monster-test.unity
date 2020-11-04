@@ -615,6 +615,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &354536819 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 354536819, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
+  m_PrefabInstance: {fileID: 299520304561006668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1999370065, guid: dcd2196c4e9166f499793f2007fcda35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &359142474
 Mesh:
   m_ObjectHideFlags: 0
@@ -17613,6 +17624,42 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2141535530}
+    - target: {fileID: 354536818, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
+      propertyPath: onAttach.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 354536818, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
+      propertyPath: onAttach.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 354536818, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
+      propertyPath: onAttach.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 354536818, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
+      propertyPath: onAttach.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 354536819}
+    - target: {fileID: 354536818, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
+      propertyPath: onAttach.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Bolt.EventMachine`2[[Bolt.StateGraph, Bolt.State.Runtime
+      objectReference: {fileID: 0}
+    - target: {fileID: 354536818, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
+      propertyPath: onAttach.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerUnityEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 354536818, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
+      propertyPath: onAttach.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 354536818, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
+      propertyPath: onAttach.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: OnDisable
+      objectReference: {fileID: 0}
+    - target: {fileID: 354536819, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
+      propertyPath: _data._objectReferences.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e0d3941044f3b444b83d9d57ec123d3, type: 2}
     - target: {fileID: 1547344527, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
       propertyPath: m_Mesh
       value: 

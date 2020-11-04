@@ -27,10 +27,11 @@ public class MonsterLowerHalf : Monster
         }
     }
 
-    public void Attach()
+    public void Attach(MonsterHead head)
     {
+        if (head == null) throw new System.Exception("No head given!");
         isHeadDetached = false;
-        EnableMonster(); 
-        head.Attach(this);
+        this.head = head;
+        EnableMonster();
     }
 }
