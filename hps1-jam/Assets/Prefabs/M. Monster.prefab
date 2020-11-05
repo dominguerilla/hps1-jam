@@ -13984,6 +13984,21 @@ MonoBehaviour:
           m_StringArgument: OnEnable
           m_BoolArgument: 0
         m_CallState: 2
+  onAttach:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 354536819}
+        m_TargetAssemblyTypeName: Bolt.EventMachine`2[[Bolt.StateGraph, Bolt.State.Runtime
+        m_MethodName: TriggerUnityEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnDisable
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8341338515555117178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14014,7 +14029,7 @@ MonoBehaviour:
   _data:
     _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
     _objectReferences:
-    - {fileID: 11400000, guid: 05faadf4c9ace8748a98582f51d594b8, type: 2}
+    - {fileID: 11400000, guid: 0e0d3941044f3b444b83d9d57ec123d3, type: 2}
 --- !u!195 &354536821
 NavMeshAgent:
   m_ObjectHideFlags: 0
