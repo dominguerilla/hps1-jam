@@ -25,6 +25,7 @@ public class Monster: MonoBehaviour
     protected bool isAlternatingLight = false;
     protected GameObject currentTarget = null;
     protected Vector3 lastSeenPlayerPosition = Vector3.zero;
+    protected bool _agentInCooldown = false;
 
     [Header("Debug")]
     // TODO: remove this
@@ -52,7 +53,7 @@ public class Monster: MonoBehaviour
 
     public void GoTo(Vector3 position)
     {
-        if(agent.enabled) agent.SetDestination(position);
+        agent.SetDestination(position);
     }
 
     public bool isAtDestination()
@@ -90,7 +91,7 @@ public class Monster: MonoBehaviour
 
     public void Stop()
     {
-        if(agent.enabled) this.agent.ResetPath();
+        this.agent.ResetPath();
     }
 
     public void LookAt(Vector3 position)

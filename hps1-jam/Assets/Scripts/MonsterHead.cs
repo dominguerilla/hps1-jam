@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class MonsterHead : Monster
 {
     [SerializeField] MonsterLowerHalf attachedBody;
+    public float attackCooldown = 2.0f;
     public UnityEvent onDetach = new UnityEvent();
     public UnityEvent onAttach = new UnityEvent();
 
@@ -15,6 +16,7 @@ public class MonsterHead : Monster
     Quaternion originalRotation;
 
     bool _isAttached = false;
+    bool _isAttackOnCooldown = false;
 
     protected override void Awake()
     {
@@ -22,9 +24,36 @@ public class MonsterHead : Monster
         _isAttached = attachedBody != null;
     }
 
-    public override void Attack()
+    public void Attack(Vector3 direction)
     {
-        Debug.Log("BITE!");
+        if (!_isAttackOnCooldown)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, direction, out hit, attackRange))
+            {
+                if (hit.transform.tag == "Player")
+                {
+                    Debug.Log("Player attacked!");
+                }
+                else
+                {
+                    Debug.Log("Attack missed!");
+                }
+            }
+            StartCoroutine(AttackCooldown());
+        }
+    }
+
+    public Vector3 GetDirectionOfPlayer()
+    {
+        return GetLastSeenPlayerPosition() - transform.position;
+    }
+
+    IEnumerator AttackCooldown()
+    {
+        _isAttackOnCooldown = true;
+        yield return new WaitForSeconds(attackCooldown);
+        _isAttackOnCooldown = false;
     }
 
     public bool isAttached()

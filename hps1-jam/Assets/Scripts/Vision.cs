@@ -25,6 +25,10 @@ public class Vision : MonoBehaviour
                 sawPlayer = true;
                 OnDetectPlayer.Invoke();
             }
+            else if (sawPlayer)
+            {
+                LosePlayer();
+            }
         }
     }
 
@@ -35,11 +39,16 @@ public class Vision : MonoBehaviour
         {
             if (sawPlayer)
             {
-                sawPlayer = false;
-                seenTarget = null;
-                OnLosePlayer.Invoke();
+                LosePlayer();
             }
         }
+    }
+
+    void LosePlayer()
+    {
+        sawPlayer = false;
+        seenTarget = null;
+        OnLosePlayer.Invoke();
     }
 
     bool CanSee(GameObject other, out RaycastHit hit)
