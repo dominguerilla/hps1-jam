@@ -13911,7 +13911,7 @@ MonoBehaviour:
   huntingGrounds: []
   huntingGroundRadius: 5
   stunTime: 2.5
-  attackRange: 1
+  attackRange: 2
   vision: {fileID: 1967291124}
   OnDetectPlayer:
     m_PersistentCalls:
@@ -13969,6 +13969,7 @@ MonoBehaviour:
         m_CallState: 2
   monsterDebugLight: {fileID: 1835548387}
   attachedBody: {fileID: 973654694}
+  attackCooldown: 2
   onDetach:
     m_PersistentCalls:
       m_Calls:
@@ -14040,11 +14041,11 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -14575,7 +14576,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.9719956, g: 1, b: 0, a: 1}
-  m_Intensity: 25
+  m_Intensity: 1
   m_Range: 40
   m_SpotAngle: 156.3
   m_InnerSpotAngle: 21.80208
@@ -14782,7 +14783,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.59
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
