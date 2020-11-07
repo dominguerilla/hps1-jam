@@ -33,11 +33,8 @@ public class MonsterHead : Monster
             {
                 if (hit.transform.tag == "Player")
                 {
-                    Debug.Log("Player attacked!");
-                }
-                else
-                {
-                    Debug.Log("Attack missed!");
+                    Player player = hit.transform.GetComponent<Player>();
+                    player.ChangeHealth(-1);
                 }
             }
             StartCoroutine(AttackCooldown());
