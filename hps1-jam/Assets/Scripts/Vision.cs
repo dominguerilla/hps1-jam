@@ -18,8 +18,7 @@ public class Vision : MonoBehaviour
         //Debug.Log($"{other.gameObject.name} entered field of vision.");
         if (other.gameObject.tag == "Player")
         {
-            RaycastHit hit;
-            if (CanSee(other.gameObject, out hit))
+            if (CanSee(other.gameObject))
             {
                 seenTarget = other.gameObject;
                 sawPlayer = true;
@@ -51,8 +50,9 @@ public class Vision : MonoBehaviour
         OnLosePlayer.Invoke();
     }
 
-    bool CanSee(GameObject other, out RaycastHit hit)
+    bool CanSee(GameObject other)
     {
+        RaycastHit hit;
         if (Physics.Raycast(eyePosition.position, other.transform.position - eyePosition.position, out hit)) {
             if (hit.transform.tag == "Player")
             {

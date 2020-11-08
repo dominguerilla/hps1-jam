@@ -40,7 +40,8 @@ public class GarlicItem : ItemComponent
             Monster monster = collision.collider.GetComponentInParent<Monster>();
             if (monster)
             {
-                monster.Flee();
+                monster.OnGarlic();
+                Destroy(this.gameObject, 1.0f);
             }
         }
         else

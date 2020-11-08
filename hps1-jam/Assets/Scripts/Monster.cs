@@ -83,7 +83,23 @@ public class Monster: MonoBehaviour
         return huntingGrounds[Random.Range(0, huntingGrounds.Length)];
     }
 
-    public void Stun()
+    public bool GetRandomPointInVicinity(Vector3 center, float range, out Vector3 result)
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = center + Random.insideUnitSphere * range;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                return true;
+            }
+        }
+        result = Vector3.zero;
+        return false;
+    }
+
+    public virtual void OnSalt()
     {
         if (!monsterEnabled) return;
         if(!isStunned) StartCoroutine(StunRoutine());
@@ -100,9 +116,9 @@ public class Monster: MonoBehaviour
         this.transform.LookAt(position);
     }
 
-    public void Flee()
+    public void OnGarlic()
     {
-        Debug.Log($"{this.gameObject.name} is fleeing!");
+        Debug.Log($"{this.gameObject.name} has been garlicked!");
     }
 
     public void TriggerOnDetectPlayer()

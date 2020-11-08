@@ -14,6 +14,18 @@ public class MonsterLowerHalf : Monster
         Detach();
     }
 
+    public override void OnSalt()
+    {
+        if (isHeadDetached)
+        {
+            Debug.Log("Body has been salted!");
+        }
+        else
+        {
+            base.OnSalt();
+        }
+    }
+
     public void Detach()
     {
         if (!isHeadDetached)

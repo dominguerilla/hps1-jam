@@ -28,7 +28,7 @@ public class SaltItem : ItemComponent
             Monster monster = col.GetComponentInParent<Monster>();
             if (monster)
             {
-                monster.Stun();
+                monster.OnSalt();
             }
         }
     }
