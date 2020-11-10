@@ -58,7 +58,10 @@ public class Monster: MonoBehaviour
 
     public bool isAtDestination()
     {
-        if(monsterEnabled) return agent.remainingDistance < agent.stoppingDistance;
+        if (monsterEnabled) {
+            if (agent.stoppingDistance == 0) return agent.remainingDistance < 1f;
+            return agent.remainingDistance < agent.stoppingDistance;
+        }
         return true;
     }
 

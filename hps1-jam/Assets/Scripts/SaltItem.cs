@@ -22,12 +22,14 @@ public class SaltItem : ItemComponent
     void SpraySalt()
     {
         saltParticles.Play();
-        Collider[] colliders = Physics.OverlapSphere(saltAreaCenter.position, saltRadius);
+        int mask = 1;
+        Collider[] colliders = Physics.OverlapSphere(saltAreaCenter.position, saltRadius, mask, queryTriggerInteraction: QueryTriggerInteraction.Ignore);
         foreach (Collider col in colliders)
         {
             Monster monster = col.GetComponentInParent<Monster>();
             if (monster)
             {
+                Debug.Log($"Salting {col.gameObject}");
                 monster.OnSalt();
             }
         }
