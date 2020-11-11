@@ -26,11 +26,11 @@ public class SaltItem : ItemComponent
         Collider[] colliders = Physics.OverlapSphere(saltAreaCenter.position, saltRadius, mask, queryTriggerInteraction: QueryTriggerInteraction.Ignore);
         foreach (Collider col in colliders)
         {
-            Monster monster = col.GetComponentInParent<Monster>();
-            if (monster)
+            IEntity monster = col.GetComponentInParent<IEntity>();
+            if (monster != null)
             {
                 Debug.Log($"Salting {col.gameObject}");
-                monster.OnSalt();
+                monster.OnSalted();
             }
         }
     }

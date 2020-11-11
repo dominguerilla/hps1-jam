@@ -14,7 +14,7 @@ public class MonsterLowerHalf : Monster
         Detach();
     }
 
-    public override void OnSalt()
+    public override void OnSalted()
     {
         if (isHeadDetached)
         {
@@ -22,7 +22,7 @@ public class MonsterLowerHalf : Monster
         }
         else
         {
-            base.OnSalt();
+            base.OnSalted();
         }
     }
 

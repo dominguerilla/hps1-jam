@@ -37,10 +37,10 @@ public class GarlicItem : ItemComponent
         if (isBeingThrown)
         {
             BreakApart();
-            Monster monster = collision.collider.GetComponentInParent<Monster>();
-            if (monster)
+            IEntity entity = collision.collider.GetComponentInParent<IEntity>();
+            if (entity != null)
             {
-                monster.OnGarlic();
+                entity.OnGarlicked();
                 Destroy(this.gameObject, 1.0f);
             }
         }

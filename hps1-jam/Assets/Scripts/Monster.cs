@@ -6,7 +6,7 @@ using Bolt;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Monster: MonoBehaviour
+public class Monster: MonoBehaviour, IEntity
 {
     [Header("Monster Parameters")]
     [SerializeField] bool monsterEnabled;
@@ -102,7 +102,7 @@ public class Monster: MonoBehaviour
         return false;
     }
 
-    public virtual void OnSalt()
+    public virtual void OnSalted()
     {
         if (!monsterEnabled) return;
         if(!isStunned) StartCoroutine(StunRoutine());
@@ -119,7 +119,7 @@ public class Monster: MonoBehaviour
         this.transform.LookAt(position);
     }
 
-    public void OnGarlic()
+    public virtual void OnGarlicked()
     {
         Debug.Log($"{this.gameObject.name} has been garlicked!");
     }
