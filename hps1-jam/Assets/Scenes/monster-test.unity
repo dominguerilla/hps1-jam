@@ -5091,10 +5091,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1692551738, guid: 4b1dd5e2f06a5b54283d18e03193abbb, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1692551738, guid: 4b1dd5e2f06a5b54283d18e03193abbb, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
@@ -17608,18 +17604,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2141535530}
-    - target: {fileID: 354536816, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: fbab3b65c3d34c14ab4c9e843ea39298, type: 2}
     - target: {fileID: 354536817, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2141535530}
-    - target: {fileID: 973654694, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
-      propertyPath: huntingGrounds.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 973654694, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
       propertyPath: huntingGrounds.Array.data[0]
       value: 
@@ -17636,10 +17624,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1530937652}
-    - target: {fileID: 1547344529, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: fbab3b65c3d34c14ab4c9e843ea39298, type: 2}
     - target: {fileID: 1547344530, guid: 44d8965ebc268404b9456b3b893dff19, type: 3}
       propertyPath: m_Mesh
       value: 

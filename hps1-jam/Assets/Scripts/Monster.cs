@@ -121,6 +121,7 @@ public class Monster: MonoBehaviour, IEntity
 
     public virtual void OnGarlicked()
     {
+        if (!monsterEnabled) return;
         Debug.Log($"{this.gameObject.name} has been garlicked!");
     }
 

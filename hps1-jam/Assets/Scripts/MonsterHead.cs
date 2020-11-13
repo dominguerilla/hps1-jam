@@ -14,6 +14,7 @@ public class MonsterHead : Monster
 
     Vector3 originalPosition;
     Quaternion originalRotation;
+    Vector3 lastBodyLocation;
 
     bool _isAttached = false;
     bool _isAttackOnCooldown = false;
@@ -63,6 +64,7 @@ public class MonsterHead : Monster
         if (!_isAttached) throw new System.Exception("Head already detached!");
         originalPosition = this.transform.position;
         originalRotation = this.transform.rotation;
+        lastBodyLocation = attachedBody.transform.position;
         Debug.Log("HEAD DETACH!");
         _isAttached = false;
         this.transform.parent = null;
@@ -73,7 +75,11 @@ public class MonsterHead : Monster
     public void Attach(MonsterLowerHalf lowerHalf)
     {
         if (_isAttached) throw new System.Exception("Head already attached!");
-        if (lowerHalf == null) throw new System.Exception("No lowerHalf given!");
+        if (lowerHalf == null)
+        {
+            Debug.Log("No lower half given!");
+            return;
+        }
         StopAlternatingLights();
         attachedBody = lowerHalf;
         _isAttached = true;

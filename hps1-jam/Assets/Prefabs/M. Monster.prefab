@@ -11704,7 +11704,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: fbab3b65c3d34c14ab4c9e843ea39298, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14156,7 +14156,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: fbab3b65c3d34c14ab4c9e843ea39298, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14851,7 +14851,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterEnabled: 1
-  huntingGrounds: []
+  huntingGrounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   huntingGroundRadius: 5
   stunTime: 2.5
   attackRange: 20

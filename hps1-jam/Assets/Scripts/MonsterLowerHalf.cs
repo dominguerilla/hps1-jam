@@ -8,7 +8,10 @@ public class MonsterLowerHalf : Monster
     [SerializeField] MonsterHead head;
     public UnityEvent onDetach = new UnityEvent();
 
-    bool isHeadDetached = false;
+    bool _isHeadDetached = false;
+    bool _isGarlicked = false;
+    bool _isSalted = false;
+
     public override void Attack()
     {
         Detach();
@@ -16,22 +19,46 @@ public class MonsterLowerHalf : Monster
 
     public override void OnSalted()
     {
-        if (isHeadDetached)
+        if (_isHeadDetached)
         {
-            Debug.Log("Body has been salted!");
+            _isSalted = true;
+            Debug.Log($"{this.gameObject.name} has been salted!");
+            if (_isGarlicked)
+            {
+                Debug.Log($"{this.gameObject.name} has been garlicked AND salted!");
+                Destroy(this.gameObject, 1.0f);
+            }
+            return;
         }
-        else
+
+        base.OnSalted();
+        
+    }
+
+    public override void OnGarlicked()
+    {
+        if (_isHeadDetached)
         {
-            base.OnSalted();
+            _isGarlicked = true;
+            Debug.Log($"{this.gameObject.name} has been garlicked!");
+            if (_isSalted)
+            {
+                Debug.Log($"{this.gameObject.name} has been salted AND garlicked!");
+                Destroy(this.gameObject, 1.0f);
+            }
+            return;
         }
+
+        base.OnGarlicked();
+        
     }
 
     public void Detach()
     {
-        if (!isHeadDetached)
+        if (!_isHeadDetached)
         {
             Debug.Log("BODY DETACH!");
-            isHeadDetached = true;
+            _isHeadDetached = true;
             DisableMonster();
             StopAlternatingLights();
             head.Detach();
@@ -42,7 +69,9 @@ public class MonsterLowerHalf : Monster
     public void Attach(MonsterHead head)
     {
         if (head == null) throw new System.Exception("No head given!");
-        isHeadDetached = false;
+        _isHeadDetached = false;
+        _isSalted = false;
+        _isGarlicked = false;
         this.head = head;
         EnableMonster();
     }
