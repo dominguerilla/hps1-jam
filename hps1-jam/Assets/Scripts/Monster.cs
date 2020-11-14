@@ -8,6 +8,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Monster: MonoBehaviour, IEntity
 {
+    #region PARAMETERS
     [Header("Monster Parameters")]
     [SerializeField] bool monsterEnabled;
     public GameObject[] huntingGrounds;
@@ -20,7 +21,9 @@ public class Monster: MonoBehaviour, IEntity
     public UnityEvent OnDetectPlayer = new UnityEvent();
     public UnityEvent OnLosePlayer = new UnityEvent();
     public UnityEvent OnDestruct = new UnityEvent();
+    #endregion
 
+    #region PROTECTED MEMBERS
     protected NavMeshAgent agent;
     protected bool isStunned = false;
     protected bool isAlternatingLight = false;
@@ -38,7 +41,60 @@ public class Monster: MonoBehaviour, IEntity
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = monsterEnabled;
     }
+    protected Vector3 GetRandomHuntingGroundPosition()
+    {
+        GameObject randomHuntingGround = GetRandomHuntingGround();
+        float randX = Random.Range(0.5f, huntingGroundRadius);
+        float randZ = Random.Range(0.5f, huntingGroundRadius);
 
+        Vector3 randomOffset = new Vector3(randX, 0, randZ);
+        return randomHuntingGround.transform.position + randomOffset;
+    }
+
+    protected void SelfDestruct()
+    {
+        Debug.Log($"Destroying the monster {this.name}");
+        OnDestruct.Invoke();
+        Destroy(this.gameObject, 1.0f);
+    }
+
+    protected GameObject GetRandomHuntingGround()
+    {
+        return huntingGrounds[Random.Range(0, huntingGrounds.Length)];
+    }
+
+    protected IEnumerator AlternateLightColors()
+    {
+        if (!isAlternatingLight)
+        {
+            isAlternatingLight = true;
+            Color lightColor = Color.red;
+            while (isAlternatingLight)
+            {
+                monsterDebugLight.color = lightColor;
+                yield return new WaitForSeconds(0.5f);
+                lightColor = lightColor == Color.red ? Color.blue : Color.red;
+            }
+        }
+        yield return null;
+    }
+
+    protected IEnumerator StunRoutine()
+    {
+        isStunned = true;
+        bool originalState = agent.isStopped;
+        agent.isStopped = true;
+        yield return new WaitForSeconds(stunTime);
+        agent.isStopped = originalState;
+        isStunned = false;
+    }
+    protected void OnDestroy()
+    {
+        DisableMonster();
+    }
+    #endregion
+
+    #region PUBLIC MEMBERS
     public void GoToRandomHuntingGround()
     {
         if (huntingGrounds.Length == 0) return;
@@ -70,28 +126,6 @@ public class Monster: MonoBehaviour, IEntity
     {
         if (other == null) return false;
         return Vector3.Distance(this.transform.position, other.transform.position) <= attackRange;
-    }
-
-    protected Vector3 GetRandomHuntingGroundPosition()
-    {
-        GameObject randomHuntingGround = GetRandomHuntingGround();
-        float randX = Random.Range(0.5f, huntingGroundRadius);
-        float randZ = Random.Range(0.5f, huntingGroundRadius);
-
-        Vector3 randomOffset = new Vector3(randX, 0, randZ);
-        return randomHuntingGround.transform.position + randomOffset;
-    }
-
-    protected void SelfDestruct()
-    {
-        Debug.Log($"Destroying the monster {this.name}");
-        OnDestruct.Invoke();
-        Destroy(this.gameObject, 1.0f);
-    }
-
-    protected GameObject GetRandomHuntingGround()
-    {
-        return huntingGrounds[Random.Range(0, huntingGrounds.Length)];
     }
 
     public bool GetRandomPointInVicinity(Vector3 center, float range, out Vector3 result)
@@ -185,34 +219,6 @@ public class Monster: MonoBehaviour, IEntity
         return currentTarget;
     }
 
-    protected IEnumerator AlternateLightColors()
-    {
-        if (!isAlternatingLight)
-        {
-            isAlternatingLight = true;
-            Color lightColor = Color.red;
-            while (isAlternatingLight)
-            {
-                monsterDebugLight.color = lightColor;
-                yield return new WaitForSeconds(0.5f);
-                lightColor = lightColor == Color.red ? Color.blue : Color.red;
-            }
-        }
-        yield return null;
-    }
-
-
-
-    protected IEnumerator StunRoutine()
-    {
-        isStunned = true;
-        bool originalState = agent.isStopped;
-        agent.isStopped = true;
-        yield return new WaitForSeconds(stunTime);
-        agent.isStopped = originalState;
-        isStunned = false;
-    }
-
     public virtual void Attack()
     {
         throw new System.Exception("Not implemented!");
@@ -222,9 +228,5 @@ public class Monster: MonoBehaviour, IEntity
     {
         return monsterEnabled;
     }
-
-    private void OnDestroy()
-    {
-        DisableMonster();
-    }
+    #endregion
 }
