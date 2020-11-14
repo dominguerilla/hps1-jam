@@ -19,6 +19,7 @@ public class Monster: MonoBehaviour, IEntity
     [Header("Events")]
     public UnityEvent OnDetectPlayer = new UnityEvent();
     public UnityEvent OnLosePlayer = new UnityEvent();
+    public UnityEvent OnDestruct = new UnityEvent();
 
     protected NavMeshAgent agent;
     protected bool isStunned = false;
@@ -79,6 +80,13 @@ public class Monster: MonoBehaviour, IEntity
 
         Vector3 randomOffset = new Vector3(randX, 0, randZ);
         return randomHuntingGround.transform.position + randomOffset;
+    }
+
+    protected void SelfDestruct()
+    {
+        Debug.Log($"Destroying the monster {this.name}");
+        OnDestruct.Invoke();
+        Destroy(this.gameObject, 1.0f);
     }
 
     protected GameObject GetRandomHuntingGround()
@@ -213,5 +221,10 @@ public class Monster: MonoBehaviour, IEntity
     public bool isEnabled()
     {
         return monsterEnabled;
+    }
+
+    private void OnDestroy()
+    {
+        DisableMonster();
     }
 }

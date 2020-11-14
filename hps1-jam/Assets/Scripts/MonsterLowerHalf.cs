@@ -25,8 +25,7 @@ public class MonsterLowerHalf : Monster
             Debug.Log($"{this.gameObject.name} has been salted!");
             if (_isGarlicked)
             {
-                Debug.Log($"{this.gameObject.name} has been garlicked AND salted!");
-                Destroy(this.gameObject, 1.0f);
+                SelfDestruct();
             }
             return;
         }
@@ -43,8 +42,7 @@ public class MonsterLowerHalf : Monster
             Debug.Log($"{this.gameObject.name} has been garlicked!");
             if (_isSalted)
             {
-                Debug.Log($"{this.gameObject.name} has been salted AND garlicked!");
-                Destroy(this.gameObject, 1.0f);
+                SelfDestruct();
             }
             return;
         }

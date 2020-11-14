@@ -14,7 +14,6 @@ public class MonsterHead : Monster
 
     Vector3 originalPosition;
     Quaternion originalRotation;
-    Vector3 lastBodyLocation;
 
     bool _isAttached = false;
     bool _isAttackOnCooldown = false;
@@ -64,7 +63,6 @@ public class MonsterHead : Monster
         if (!_isAttached) throw new System.Exception("Head already detached!");
         originalPosition = this.transform.position;
         originalRotation = this.transform.rotation;
-        lastBodyLocation = attachedBody.transform.position;
         Debug.Log("HEAD DETACH!");
         _isAttached = false;
         this.transform.parent = null;
