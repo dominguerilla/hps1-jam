@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -9,11 +10,14 @@ public class Player : MonoBehaviour
 
     public UnityEvent onDamage = new UnityEvent();
 
+    [SerializeField] Text healthCount;
+
     int currentHealth;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        UpdateUI();
     }
 
     public void ChangeHealth(int amount)
@@ -28,5 +32,11 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Player is dead!");
         }
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
+        healthCount.text = $"x {currentHealth}";
     }
 }
