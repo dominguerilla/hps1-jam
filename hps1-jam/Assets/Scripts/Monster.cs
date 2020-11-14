@@ -51,13 +51,6 @@ public class Monster: MonoBehaviour, IEntity
         return randomHuntingGround.transform.position + randomOffset;
     }
 
-    protected void SelfDestruct()
-    {
-        Debug.Log($"Destroying the monster {this.name}");
-        OnDestruct.Invoke();
-        Destroy(this.gameObject, 1.0f);
-    }
-
     protected GameObject GetRandomHuntingGround()
     {
         return huntingGrounds[Random.Range(0, huntingGrounds.Length)];
@@ -142,6 +135,13 @@ public class Monster: MonoBehaviour, IEntity
         }
         result = Vector3.zero;
         return false;
+    }
+
+    public virtual void SelfDestruct(float timeToDestroy)
+    {
+        Debug.Log($"Destroying the monster {this.name}");
+        OnDestruct.Invoke();
+        Destroy(this.gameObject, timeToDestroy);
     }
 
     public virtual void OnSalted()
