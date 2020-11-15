@@ -25,7 +25,7 @@ public class Respawn : MonoBehaviour
         }
     }
 
-    void RespawnObject()
+    public void RespawnObject()
     {
         CharacterController cc = GetComponent<CharacterController>();
         if(cc) cc.enabled = false;

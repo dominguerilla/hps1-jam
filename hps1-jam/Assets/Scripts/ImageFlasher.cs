@@ -10,12 +10,12 @@ public class ImageFlasher : MonoBehaviour
 
     public void FlashDamageImage()
     {
-        StartCoroutine(FlashImage(damageImage));
+        StartCoroutine(FlashImage(damageImage, Color.red));
     }
 
-    IEnumerator FlashImage(Image image)
+    IEnumerator FlashImage(Image image, Color imageColor)
     {
-        Color originalColor = image.color;
+        Color originalColor = imageColor;
         float alpha = 0.75f;
         Color newColor = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
         image.color = newColor;

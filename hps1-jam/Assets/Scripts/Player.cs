@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public int maxHealth = 3;
 
     public UnityEvent onDamage = new UnityEvent();
+    public UnityEvent onDeath = new UnityEvent();
 
     [SerializeField] Text healthCount;
 
@@ -30,7 +31,7 @@ public class Player : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
-            Debug.Log("Player is dead!");
+            onDeath.Invoke();
         }
         UpdateUI();
     }
@@ -38,5 +39,11 @@ public class Player : MonoBehaviour
     public void UpdateUI()
     {
         healthCount.text = $"x {currentHealth}";
+    }
+
+    public void ResetPlayer()
+    {
+        this.currentHealth = maxHealth;
+        UpdateUI();
     }
 }
