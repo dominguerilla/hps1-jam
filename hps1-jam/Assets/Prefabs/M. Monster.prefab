@@ -13967,6 +13967,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDestruct:
+    m_PersistentCalls:
+      m_Calls: []
   monsterDebugLight: {fileID: 1835548387}
   attachedBody: {fileID: 973654694}
   attackCooldown: 2
@@ -14851,10 +14854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterEnabled: 1
-  huntingGrounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  huntingGrounds: []
   huntingGroundRadius: 5
   stunTime: 2.5
   attackRange: 20
@@ -14913,6 +14913,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDestruct:
+    m_PersistentCalls:
+      m_Calls: []
   monsterDebugLight: {fileID: 1835548387}
   head: {fileID: 354536818}
   onDetach:

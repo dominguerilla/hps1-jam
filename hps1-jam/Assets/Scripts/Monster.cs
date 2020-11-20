@@ -90,7 +90,7 @@ public class Monster: MonoBehaviour, IEntity
     #region PUBLIC MEMBERS
     public void GoToRandomHuntingGround()
     {
-        if (huntingGrounds.Length == 0) return;
+        if (huntingGrounds == null || huntingGrounds.Length == 0) return;
         Vector3 huntingGroundPosition = GetRandomHuntingGroundPosition();
 
         // Bolt can call this function before Awake has even run
